@@ -7,6 +7,4 @@ module.exports.connect = async () => {
   } catch (error) {
       console.log("Connect Error!");
   }
-
 }
-mongoose.connect(process.env.MONGO_URL);
