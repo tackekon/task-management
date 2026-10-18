@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const database = require("./config/database");
 require("dotenv").config();
@@ -16,6 +17,8 @@ database.connect();
 
 // parse application/json
 app.use(bodyParser.json())
+
+app.use(cookieParser());
 
 // Routes Version 1
 routesApiVer1(app);
