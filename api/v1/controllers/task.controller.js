@@ -118,7 +118,7 @@ module.exports.changeMulti = async (req, res) => {
           code: 200,
           message: "Xoá thành công."
         });
-    
+        break;
       default:
         res.json({
           code: 400,
