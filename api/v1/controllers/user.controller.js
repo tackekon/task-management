@@ -198,3 +198,14 @@ module.exports.detail = async (req, res) => {
      res.json("Không tìm thấy!");
   }
 };
+
+// [POST] api/users/list
+module.exports.list = async (req, res) => {
+  const users = await User.find({deleted:false}).select("fullName email");
+
+  res.json({
+    code: 200,
+    message: "Thành công",
+    users: users
+  });
+};

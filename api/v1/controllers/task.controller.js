@@ -167,7 +167,7 @@ module.exports.edit = async (req, res) => {
       code: 200,
       message: "Cập nhật thành công."
     });
-  } catch (error) {
+  } catch (error) { 
     res.json({
       code: 400,
       message: "Lỗi!"
