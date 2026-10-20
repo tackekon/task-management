@@ -114,11 +114,44 @@ module.exports.forgotPassword = async (req, res) => {
   const html =  `
     Mã OTP của bạn là <b>${otp}</b>. Sử dụng trong ${timeExpire} phút.
   `;
-  
+
   sendMailHelper.sendMail(email, subject, html);
 
   res.json({
     code: 200,
     message: "Đã gửi OTP qua email."
   })
+};
+
+// [POST] api/users/password/otp
+module.exports.otpPassword = async (req, res) => {
+  const email = req.body.email;
+  const otp = req.body.otp;
+
+  const result = await ForgotPassword.findOne({
+    email: email,
+    otp: otp
+  });
+
+  if(!result) {
+    res.json({
+      code: 400,
+      message: "Mã OTP không hợp lệ!"
+    });
+    return;
+  }
+
+  const user = await User.findOne({
+    email: email
+  });
+  
+  const token = user.token;
+  
+  res.cookie("token", token);
+
+  res.json({
+    code: 200,
+    message: "Xác thực thành công.",
+    token: token
+  });
 };
