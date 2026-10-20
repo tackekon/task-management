@@ -10,6 +10,6 @@ module.exports = (app) => {
 
   app.use(version + "/tasks", authMiddleware.requireAuth, tasksRoute);
 
-  app.use(version + "/users", authMiddleware.requireAuth, userRoute);
+  app.use(version + "/users", userRoute);
 
 }
